@@ -1,10 +1,10 @@
-package com.creditCard.demo;
+package com.creditCard;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class DemoApplicationTests {
+class CreditCardApplicationTests {
 
 	@Test
 	void contextLoads() {
