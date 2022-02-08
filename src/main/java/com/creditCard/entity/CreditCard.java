@@ -14,7 +14,7 @@ public class CreditCard {
     @Column(name="ID")
     private int id;
     @Column(name="CARD_NUMBER",unique = true)
-    private String cradNumber;
+    private String cardNumber;
     @Column(name="CARD_NAME",unique = false)
     private String cardName;
     @Column(name="CARD_LIMIT",unique = false)

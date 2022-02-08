@@ -9,12 +9,11 @@ import com.creditCard.exception.DataNotFoundException;
 import com.creditCard.exception.InvalidDataInputException;
 import com.creditCard.helper.CreditCardHelperTest;
 import com.creditCard.repository.CreditCardRepositoryImpl;
+import com.security.service.UserManagementService;
+import com.security.util.JwtUtil;
 import org.junit.Assert;
 import org.junit.Test;
-import org.junit.jupiter.api.Assertions;
 import org.junit.runner.RunWith;
-import org.mockito.InjectMocks;
-import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
@@ -22,7 +21,6 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertThrows;
@@ -39,6 +37,12 @@ public class CreditCardServiceImplTest {
 
     @Autowired
     private MockMvc mockMvc;
+
+    @MockBean
+    JwtUtil jwtUtil;
+
+    @MockBean
+    UserManagementService userManagementService;
 
     @org.junit.Test(expected = CreditCardNumberNotValidException.class)
     public void inValidCreditCardNumberTest() throws Exception {
@@ -63,7 +67,7 @@ public class CreditCardServiceImplTest {
         CreditCard creditCard = new CreditCardBuilder().withCreditCardNumber("79927398713").withCreditCardName("CreditCard").withCreditCardLimit(5000).build();
         Mockito.when(creditCardRepository.addCreditCard(Mockito.any(CreditCard.class))).thenReturn(creditCard);
         CreditCard result = creditCardRepository.addCreditCard(creditCard);
-        Assert.assertEquals("79927398713",result.getCradNumber());
+        Assert.assertEquals("79927398713",result.getCardNumber());
     }
 
     @org.junit.Test(expected = InvalidDataInputException.class)

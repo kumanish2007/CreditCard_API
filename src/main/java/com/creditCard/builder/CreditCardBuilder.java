@@ -10,7 +10,7 @@ public class CreditCardBuilder {
     }
 
     public CreditCardBuilder withCreditCardNumber(String cardNumber){
-        this.creditCard.setCradNumber(cardNumber);
+        this.creditCard.setCardNumber(cardNumber);
         return this;
     }
 
