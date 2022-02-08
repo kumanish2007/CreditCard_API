@@ -67,8 +67,8 @@ public class CreditCardServiceImpl implements CreditCardService {
 
     private List<CreditCardDTO> getCreditCardDTOS(List<CreditCard> creditCardList) {
         List<CreditCardDTO> creditCardDTOList = new ArrayList<>();
-        CreditCardDTO creditCardDTO = new CreditCardDTO();
         creditCardList.stream().forEach(creditCard -> {
+            CreditCardDTO creditCardDTO = new CreditCardDTO();
             creditCardDTO.setCardName(creditCard.getCardName());
             creditCardDTO.setCardNumber(creditCard.getCardNumber());
             creditCardDTO.setLimit(creditCard.getCardLimit());

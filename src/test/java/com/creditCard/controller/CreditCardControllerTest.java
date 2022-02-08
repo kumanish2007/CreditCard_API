@@ -6,6 +6,8 @@ import com.creditCard.exception.InvalidDataInputException;
 import com.creditCard.helper.CreditCardHelperTest;
 import com.creditCard.response.SaveResponseDTO;
 import com.creditCard.service.CreditCardService;
+import com.security.service.UserManagementService;
+import com.security.util.JwtUtil;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
@@ -36,7 +38,13 @@ public class CreditCardControllerTest {
     @MockBean
     CreditCardService creditCardService;
 
-/*    @Test
+    @MockBean
+    UserManagementService userManagementService;
+
+    @MockBean
+    JwtUtil jwtUtil;
+
+    /*@Test
     public void addCreditCardDetails() throws Exception{
         String inputJson = "{\"cardNumber\":\"79927398713\",\"cardName\":\"Platinum Card\",\"limit\":500000}";
         String outputJson = "{\"responseCode\":\"200\",\"responseMessage\":\"Success\"}";
@@ -51,7 +59,7 @@ public class CreditCardControllerTest {
                 .contentType(MediaType.APPLICATION_JSON);
         MvcResult result = mockMvc.perform(requestBuilder).andReturn();
         MockHttpServletResponse response = result.getResponse();
-        Assertions.assertEquals(404, response.getStatus());
+        Assertions.assertEquals(403, response.getStatus());
     }
 
     @Test
@@ -65,7 +73,7 @@ public class CreditCardControllerTest {
                 .contentType(MediaType.APPLICATION_JSON);
         MvcResult result = mockMvc.perform(requestBuilder).andReturn();
         MockHttpServletResponse response = result.getResponse();
-        Assertions.assertEquals(404,response.getStatus());
+        Assertions.assertEquals(403,response.getStatus());
         Assertions.assertEquals(outputJson,response.getContentAsString());
     }
 
@@ -73,10 +81,7 @@ public class CreditCardControllerTest {
     public void getCreditCardListTest() throws Exception {
         String outputJson = CreditCardHelperTest.getJsonString();
         List<CreditCardDTO> creditCardDTOList = CreditCardHelperTest.getCreditCardDTOList();
-
         //this.mockMvc.perform(get(GET_CREDITCARD_ENDPOINTS).)
-
-
         Mockito.when(creditCardService.getCreditCard()).thenThrow(new InvalidDataInputException());
         RequestBuilder requestBuilder = MockMvcRequestBuilders
                 .get(GET_CREDITCARD_ENDPOINTS)

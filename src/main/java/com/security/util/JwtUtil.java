@@ -16,7 +16,7 @@ public class JwtUtil {
 
     public static final long JWT_TOKEN_VALIDITY = 5*60*60;
 
-    private String SECRET_KEY = "pwdcard1991";
+    private String SECRET_KEY = "jwtpwd123";
 
     public String extractUsername(String token) {
         return extractClaim(token, Claims::getSubject);
