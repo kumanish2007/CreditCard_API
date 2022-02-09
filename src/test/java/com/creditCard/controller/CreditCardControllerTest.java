@@ -8,14 +8,17 @@ import com.creditCard.response.SaveResponseDTO;
 import com.creditCard.service.CreditCardService;
 import com.security.service.UserManagementService;
 import com.security.util.JwtUtil;
+import org.junit.Ignore;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
+import org.junit.runner.RunWith;
 import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
 import org.springframework.mock.web.MockHttpServletResponse;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.RequestBuilder;
@@ -44,7 +47,7 @@ public class CreditCardControllerTest {
     @MockBean
     JwtUtil jwtUtil;
 
-    /*@Test
+    @Ignore
     public void addCreditCardDetails() throws Exception{
         String inputJson = "{\"cardNumber\":\"79927398713\",\"cardName\":\"Platinum Card\",\"limit\":500000}";
         String outputJson = "{\"responseCode\":\"200\",\"responseMessage\":\"Success\"}";
@@ -62,7 +65,7 @@ public class CreditCardControllerTest {
         Assertions.assertEquals(403, response.getStatus());
     }
 
-    @Test
+    @Ignore
     public void getCreditCardTest() throws Exception {
         String outputJson = CreditCardHelperTest.getJsonString();
         List<CreditCardDTO> creditCardDTOList = CreditCardHelperTest.getCreditCardDTOList();
@@ -77,7 +80,7 @@ public class CreditCardControllerTest {
         Assertions.assertEquals(outputJson,response.getContentAsString());
     }
 
-    @Test
+    @Ignore
     public void getCreditCardListTest() throws Exception {
         String outputJson = CreditCardHelperTest.getJsonString();
         List<CreditCardDTO> creditCardDTOList = CreditCardHelperTest.getCreditCardDTOList();
@@ -91,5 +94,5 @@ public class CreditCardControllerTest {
         MockHttpServletResponse response = result.getResponse();
         Assertions.assertEquals(404,response.getStatus());
         Assertions.assertEquals(outputJson,response.getContentAsString());
-    }*/
+    }
 }

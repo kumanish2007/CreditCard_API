@@ -36,11 +36,11 @@ public class CreditCardHelperTest {
 
     public static List<CreditCard> getCreditCardList(){
         List<CreditCard> creditCard = new ArrayList<>();
-        creditCard.add(new CreditCardBuilder().withCreditCardNumber("12345674")
-                .withCreditCardName("CreditCard").withCreditCardLimit(15000l).withCreditBalance(0l).build());
         creditCard.add(new CreditCardBuilder().withCreditCardNumber("79927398713")
                 .withCreditCardName("CreditCard").withCreditCardLimit(5000l).withCreditBalance(0l).build());
-        return creditCard;
+        creditCard.add(new CreditCardBuilder().withCreditCardNumber("12345674")
+                .withCreditCardName("CreditCard").withCreditCardLimit(15000l).withCreditBalance(0l).build());
+           return creditCard;
     }
 
 }
