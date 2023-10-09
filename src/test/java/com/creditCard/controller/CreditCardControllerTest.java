@@ -1,5 +1,6 @@
 package com.creditCard.controller;
 
+import com.creditCard.Constants;
 import com.creditCard.dto.CreditCardDTO;
 import com.creditCard.dto.CreditCardInputDTO;
 import com.creditCard.exception.InvalidDataInputException;
@@ -10,31 +11,22 @@ import com.security.service.UserManagementService;
 import com.security.util.JwtUtil;
 import org.junit.Ignore;
 import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.Test;
-import org.junit.runner.RunWith;
 import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
 import org.springframework.mock.web.MockHttpServletResponse;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.RequestBuilder;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 
-import java.util.ArrayList;
 import java.util.List;
 
 //@RunWith(SpringJUnit4ClassRunner.class)
 @WebMvcTest(value = CreditCardControllerTest.class)
 public class CreditCardControllerTest {
-    private static final String ADD_CREDITCARD_ENDPOINTS = "/creditCard/addCreditCard";
-    private static final String GET_CREDITCARD_ENDPOINTS = "/creditCard/getCreditCardList";
-
     @Autowired
     private MockMvc mockMvc;
 
@@ -57,7 +49,7 @@ public class CreditCardControllerTest {
         Mockito.when(creditCardService.addCreditCard(Mockito.any(CreditCardInputDTO.class))).thenReturn(errorResponse);
 
         RequestBuilder requestBuilder = MockMvcRequestBuilders
-                .post(ADD_CREDITCARD_ENDPOINTS)
+                .post(Constants.ADD_CREDITCARD_ENDPOINTS)
                 .accept(MediaType.APPLICATION_JSON).content(inputJson)
                 .contentType(MediaType.APPLICATION_JSON);
         MvcResult result = mockMvc.perform(requestBuilder).andReturn();
@@ -71,7 +63,7 @@ public class CreditCardControllerTest {
         List<CreditCardDTO> creditCardDTOList = CreditCardHelperTest.getCreditCardDTOList();
         Mockito.when(creditCardService.getCreditCard()).thenReturn(creditCardDTOList);
         RequestBuilder requestBuilder = MockMvcRequestBuilders
-                .get(GET_CREDITCARD_ENDPOINTS)
+                .get(Constants.GET_CREDITCARD_ENDPOINTS)
                 .accept(MediaType.APPLICATION_JSON)
                 .contentType(MediaType.APPLICATION_JSON);
         MvcResult result = mockMvc.perform(requestBuilder).andReturn();
@@ -87,7 +79,7 @@ public class CreditCardControllerTest {
         //this.mockMvc.perform(get(GET_CREDITCARD_ENDPOINTS).)
         Mockito.when(creditCardService.getCreditCard()).thenThrow(new InvalidDataInputException());
         RequestBuilder requestBuilder = MockMvcRequestBuilders
-                .get(GET_CREDITCARD_ENDPOINTS)
+                .get(Constants.GET_CREDITCARD_ENDPOINTS)
                 .accept(MediaType.APPLICATION_JSON)
                 .contentType(MediaType.APPLICATION_JSON);
         MvcResult result = mockMvc.perform(requestBuilder).andReturn();

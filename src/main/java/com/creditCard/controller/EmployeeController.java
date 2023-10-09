@@ -1,5 +1,6 @@
 package com.creditCard.controller;
 
+import com.creditCard.Constants;
 import com.creditCard.dto.EmployeeDTO;
 import com.creditCard.service.EmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,7 +16,7 @@ public class EmployeeController {
 @Autowired
 EmployeeService employeeService;
 
-@PostMapping("/saveEmployee")
+@PostMapping(Constants.ADD_EMPLOYEE_ENDPOINTS)
 public String addEmployee(@RequestBody EmployeeDTO employeeDTO){
     employeeService.addEmployee(employeeDTO);
     return "Records inserted successfully !";
